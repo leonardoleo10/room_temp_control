@@ -1,11 +1,32 @@
 #include <Arduino.h>
+#include <Wire.h>
+#include <DS3231.h>
+#include <DHT.h>
+
+#define DHTPIN 2 //Pin to connect DHT sensor
+#define DHTTYPE DHT11
+
+//RTC object
+DS3231 Rtc;
+DHT Dht(DHTPIN, DHTTYPE);
+
+float temp; //Actual temperature in celsius
+byte hourOn, hourOff;
+
 
 void setup() {
-  // put your setup code here, to run once:
+
   Serial.begin(9600);
-  //Testing pull request
+  Wire.begin();
+  Dht.begin();
+
+  
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  
+
+
+  temp = Dht.readTemperature();
+
 }
